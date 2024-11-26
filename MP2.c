@@ -8,7 +8,7 @@ int main() {
     double A; // scalar multiplier
 
     printf("Enter the scalar value A: ");
-    scanf("%f", &A);
+    scanf("%lf", &A);
 
     printf("Enter the size of the vectors (n): ");
     scanf("%d", &n);
@@ -25,13 +25,13 @@ int main() {
     printf("Enter %d elements for vector X:\n", n);
     for (int i = 0; i < n; i++) {
         printf("X[%d]: ", i);
-        scanf("%f", &X[i]);
+        scanf("%lf", &X[i]);
     }
 
     printf("Enter %d elements for vector Y:\n", n);
     for (int i = 0; i < n; i++) {
         printf("Y[%d]: ", i);
-        scanf("%f", &Y[i]);
+        scanf("%lf", &Y[i]);
     }
     
     for (int i = 0; i < n; i++) {
