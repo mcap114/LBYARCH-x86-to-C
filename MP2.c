@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern float daxpy(float a, float x, float y);
+extern double daxpy(double a, double x, double y);
 
 int main() {
     int n; // size of the vectors
-    float A; // scalar multiplier
+    double A; // scalar multiplier
 
     printf("Enter the scalar value A: ");
     scanf("%f", &A);
@@ -13,9 +13,9 @@ int main() {
     printf("Enter the size of the vectors (n): ");
     scanf("%d", &n);
 
-    float *X = (float *)malloc(n * sizeof(float));
-    float *Y = (float *)malloc(n * sizeof(float));
-    float *Z = (float *)malloc(n * sizeof(float));
+    double *X = (double *)malloc(n * sizeof(double));
+    double *Y = (double *)malloc(n * sizeof(double));
+    double *Z = (double *)malloc(n * sizeof(double));
 
     if (X == NULL || Y == NULL || Z == NULL) {
         printf("Memory allocation failed!\n");
