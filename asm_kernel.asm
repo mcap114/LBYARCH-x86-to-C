@@ -28,7 +28,7 @@ global daxpy
         addsd xmm7, xmm8
         
        ;store Z[i]
-        movsd [r15+r10*8], xmm15
+        movsd [r15+r10*8], xmm7
         
         inc r10 ;increment cnt
         jmp L1
