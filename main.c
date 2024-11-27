@@ -21,7 +21,7 @@ int main() {
      2^29 = 536870912
      2^30 = 1073741824
     */
-    int n = 1048576;
+    int n = 536870912;
 
     // number of runs for execution time test
     int runcount = 30;
@@ -83,6 +83,8 @@ int main() {
 
     // Measure execution time for x86 kernel
     double total_time_x86 = 0.0;
+
+    printf("ASM PART STARTS HERE");
 
     for (int i = 0; i < runcount; i++) {
         start = clock();

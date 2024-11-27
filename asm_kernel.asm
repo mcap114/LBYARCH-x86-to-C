@@ -2,37 +2,32 @@ section .text
 bits 64
 default rel
 global daxpy_asm
-   
-    daxpy_asm:
-        push rbp ;stack to frame
-        mov rbp, rsp
-        add rbp, 16
-        
-        mov r15, [rbp+32] ;store Z
-       
-        xor rbx, rbx
-       
-    L1:
-        cmp rbx, rcx
-        jae end_loop
-        
-        ;Calculates A*X[i]
-        xorpd xmm7, xmm7
-        
-        movsd xmm7, [r8+rbx*8]
-        mulsd xmm7, xmm1
-        
-        ;Calculate Y[i] + product
-        xorpd xmm8, xmm8
-        movsd xmm8, [r9+rbx*8]
-        addsd xmm7, xmm8
-        
-       ;store Z[i]
-        movsd [r15+rbx*8], xmm7
-        
-        inc rbx ;increment cnt
-        jmp L1
-        
-    end_loop:
-        pop rbp
-        ret
+
+daxpy_asm:
+    ; initialize index to 0
+    xor rbx, rbx            
+
+L1:
+    ; compare index with n value in rcx
+    cmp rbx, rcx            
+    jae L2          
+
+    ; load X[i] into xmm7 and Y[i] into xmm8
+    movsd xmm7, [rdx + rbx*8]  
+    movsd xmm8, [r8 + rbx*8]   
+
+    ; multiply A (xmm0) by X[i] (xmm7) and store in xmm7
+    mulsd xmm7, xmm0
+
+    ; add Y[i] to the result (xmm8)
+    addsd xmm7, xmm8
+
+    ; store the result into Z[i]
+    movsd [r9 + rbx*8], xmm7
+
+    ; increment index i, repeat loop
+    inc rbx                 
+    jmp L1                 
+
+L2:
+    ret                     
