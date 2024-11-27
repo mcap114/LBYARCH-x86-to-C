@@ -8,10 +8,10 @@ MCO2 Group 3 (S17)
     
 ## Project Specifications
 
-Write the kernel in:
-(1) C program
-(2) x86-64 assembly language 
-The kernel performs the following operation:
+Write the kernel in: <br>
+(1) C program<br>
+(2) x86-64 assembly language<br> 
+The kernel performs the following operation:<br>
 
 Z[i] = A * X[i] + Y[I]
 
