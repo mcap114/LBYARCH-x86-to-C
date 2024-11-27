@@ -20,7 +20,7 @@ Input:
 - Scalar variable A (double-precision float)
 - Vectors X, Y, Z (double-presion float)
 
-* Functional scalar SIMD registers and floating-point instructions are used.
+Functional scalar SIMD registers and floating-point instructions are used.
 
 Output: store result in vector Z. Display the result of 1st ten elements of vector Z for all versions of kernel (i.e., C and x86-64).
 
