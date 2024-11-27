@@ -4,7 +4,7 @@
 
 MCO2 Group 3 (S17)
 <h4>BRILLANTES, Althea Kaitlin<h4>
-<h4>CARPAROS, Miguel Antonio<h4>
+<h4>CAPAROS, Miguel Antonio<h4>
     
 ## Project Specifications
 
