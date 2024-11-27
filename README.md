@@ -2,10 +2,9 @@
 
 ## DAXPY Kernel Implementation in C and x86-64 Assembly
 
-MCO2 Group 3
+MCO2 Group 3 (S17)
 <h4>BRILLANTES, Althea Kaitlin<h4>
 <h4>CARPAROS, Miguel Antonio<h4>
-<h4>Section S17<h4>
     
 ## Project Specifications
 
