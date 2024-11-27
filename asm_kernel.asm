@@ -1,10 +1,7 @@
-
 section .text
 bits 64
 default rel
-
 global daxpy_asm
-
    
     daxpy_asm:
         push rbp ;stack to frame

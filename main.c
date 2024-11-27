@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
-extern double daxpy(double a, double *x, double *y, double *z, int n);
+extern double daxpy_asm(double a, double *x, double *y, double *z, int n);
 
 extern void daxpy_c(double a, const double *X, const double *Y, double *Z, int n);
 
@@ -15,11 +16,12 @@ int main() {
     /*
      2^20 = 1048576
      2^24 = 16777216
+     2^27 = 134217728
      2^28 = 268435456
      2^29 = 536870912
      2^30 = 1073741824
     */
-    int n = 536870912;
+    int n = 1048576;
 
     // number of runs for execution time test
     int runcount = 30;
@@ -27,9 +29,10 @@ int main() {
     // vector declarations and 
     double *X = (double *)malloc(n * sizeof(double));
     double *Y = (double *)malloc(n * sizeof(double));
-    double *Z = (double *)malloc(n * sizeof(double));
+    double *Z_c = (double *)malloc(n * sizeof(double));
+    double *Z_x86 = (double *)malloc(n * sizeof(double));
 
-    if (X == NULL || Y == NULL || Z == NULL) {
+    if (X == NULL || Y == NULL || Z_c == NULL || Z_x86 == NULL) {
         printf("Memory allocation failed!\n");
         return 1;
     }
@@ -60,25 +63,61 @@ int main() {
     }
     */
 
-    // measure execution time
+    // Measure execution time for C kernel
     clock_t start, end;
-    double total_time = 0.0;
+    double total_time_c = 0.0;
 
-    for (int iter = 0; iter < runcount; iter++) {
-        start = clock(); 
-        daxpy_c(A, X, Y, Z, n);
-        end = clock(); 
-        total_time += (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
+    for (int i = 0; i < runcount; i++) {
+        start = clock();
+        daxpy_c(A, X, Y, Z_c, n);
+        end = clock();
+        total_time_c += (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
     }
 
-    // display the first 10 elements of Z
-    printf("First 10 elements of vector Z:\n");
+    printf("\nFirst 10 elements of c kernel output:\n");
     for (int i = 0; i < 10 && i < n; i++) {
-        printf("Z[%d] = %.2f\n", i, Z[i]);
+        printf("Z_c[%d] = %.2f\n", i, Z_c[i]);
+    }
+    double avg_time_c = total_time_c / runcount;
+    printf("Average execution time for c kernel: %.3f ms\n", avg_time_c);
+
+    // Measure execution time for x86 kernel
+    double total_time_x86 = 0.0;
+
+    for (int i = 0; i < runcount; i++) {
+        start = clock();
+        daxpy_asm(A, X, Y, Z_x86, n);
+        end = clock();
+        total_time_x86 += (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
     }
 
-    // calculate and print average execution time
-    double avg_time = total_time / runcount;
-    printf("Average execution time for daxpy_c: %.3f ms\n", avg_time);
+    printf("\nFirst 10 elements of x86 kernel output:\n");
+    for (int i = 0; i < 10 && i < n; i++) {
+        printf("Z_x86[%d] = %.2f\n", i, Z_x86[i]);
+    }
+    double avg_time_x86 = total_time_x86 / runcount;
+    printf("Average execution time for x86 kernel: %.3f ms\n", avg_time_x86);
+
+    // check if results are the same
+    bool results_match = true;
+    for (int i = 0; i < 10 && i < n; i++) {
+        if (Z_c[i] != Z_x86[i]) {
+            results_match = false;
+            break;
+        }
+    }
+
+    if (results_match) {
+        printf("\nResults match.\n");
+    } else {
+        printf("\nResults do NOT match.\n");
+    }
+
+    // free allocated memory
+    free(X);
+    free(Y);
+    free(Z_c);
+    free(Z_x86);
+
     return 0;
 }
