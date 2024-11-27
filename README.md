@@ -15,17 +15,17 @@ The kernel performs the following operation:<br>
 
 Z[i] = A * X[i] + Y[I]
 
-Input: 
+**Input:**
 - Scalar vaiable n (integer); contains length of vector
 - Scalar variable A (double-precision float)
 - Vectors X, Y, Z (double-presion float)
 
 Functional scalar SIMD registers and floating-point instructions are used.
 
-Output: store result in vector Z. Display the result of 1st ten elements of vector Z for all versions of kernel (i.e., C and x86-64).
+**Output:** store result in vector Z. Display the result of 1st ten elements of vector Z for all versions of kernel (i.e., C and x86-64).
 
-Note: 
-1.) Write a C main program to call the kernels of the C version and x86-64 assembly language.
+Note: <br>
+1.) Write a C main program to call the kernels of the C version and x86-64 assembly language.<br>
 2.) Time the kernel portion only. Both for debug mode and release mode
 
 ## Debug Mode
