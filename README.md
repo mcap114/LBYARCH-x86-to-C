@@ -30,28 +30,29 @@ Note: <br>
 
 ## Debug Mode
 
-### (i) Comparative Execution(Avg) and Analysis (C and x86-64)
-**vector size (n)**    **C**    **x86-64**    
-2<sup>20</sup> | 1.433 ms |
-2<sup>24</sup> | 24.600 ms |
-2<sup>27</sup> | 209.100 ms |
-2<sup>28</sup> | 432.433 ms |
-2<sup>29</sup> | 977.233 ms |
-2<sup>30</sup> | DID NOT EXECUTE |
+### (i) Comparative Execution (Avg) and Analysis (C and x86-64)
+| **Vector Size (n)** | **C (Avg Execution Time)** | **x86-64 (Avg Execution Time)** |
+|:-------------------:|:--------------------------:|:-------------------------------:|
+| 2<sup>20</sup>      | 1.433 ms                   | ( )                  |
+| 2<sup>24</sup>      | 24.600 ms                  | ( )                  |
+| 2<sup>27</sup>      | 209.100 ms                 | ( )                  |
+| 2<sup>28</sup>      | 432.433 ms                 | ( )                  |
+| 2<sup>29</sup>      | 977.233 ms                 | ( )                  |
+| 2<sup>30</sup>      | DID NOT EXECUTE             | ( )                  |
 
 **Analysis:**
 
 ## Release Mode
 
-**vector size (n)**    **C**    **x86-64**    
-2<sup>20</sup>
-2<sup>24</sup>
-2<sup>25</sup>
-2<sup>26</sup>
-2<sup>27</sup>
-2<sup>28</sup>
-2<sup>29</sup>
-2<sup>30</sup>
+| **Vector Size (n)** | **C (Avg Execution Time)** | **x86-64 (Avg Execution Time)** |
+|:-------------------:|:--------------------------:|:-------------------------------:|
+| 2<sup>20</sup>      | 1.433 ms                   | ( )                  |
+| 2<sup>24</sup>      | 24.600 ms                  | ( )                  |
+| 2<sup>27</sup>      | 209.100 ms                 | ( )                  |
+| 2<sup>28</sup>      | 432.433 ms                 | ( )                  |
+| 2<sup>29</sup>      | 977.233 ms                 | ( )                  |
+| 2<sup>30</sup>      | DID NOT EXECUTE             | ( )                  |
+
 
 
 ## Program Output with Correctness Check (C)
