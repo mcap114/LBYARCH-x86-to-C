@@ -40,9 +40,19 @@ Note: <br>
 | 2<sup>29</sup>      | 890.167 ms                 | 3510.733 ms                  |
 | 2<sup>30</sup>      | DID NOT EXECUTE             | DID NOT EXECUTE                  |
 
+This comparative execution table reveals the performance of the C and x86-64 (ASM) across the various vector sizes (2^20, 2^24, 2^27, 2^28, 2^29, 2^30). 
 **Analysis:**
+- 2<sup>20</sup> to 2<sup>24</sup>
+The x86-64 kernel significantly outperforms the C kernel for these vector sizes. This might be due to the x86-64 assembly's optimized use of SIMD instructions. The C kernel might be slower but executes efficiently as well.
 
+- 2<sup>24</sup> to 2<sup>28</sup>
+As the vector size increases, both kernels experience linear growth in their average execution time. However, the x86-64 kernel (2^24-2^28 = 18.533-287.567ms) still demonstrates to outperform the C kernel (2^24-2^28 = 24.167-449.133ms). Showing the efficiency of the ASM kernel accordingly.
 
+- 2<sup>29</sup>
+The ASM kernel's execution time surprisingly spikes dramatically for very large vector sizes like 2^29 with an average execution time of 3510.733 ms, becoming extremely slower than the C kernel with 890.167 ms. This might be due to the size exceeding the CPU's capacity making the SM kernel suffer from frequent memory access and register spilling. Furthermore, this substantial gap between their times underscores the ASM kernel's scalability and efficiency in handling large magnitude sizes.
+
+- 2<sup>30</sup>
+Both kernels failed to execute due to resource limitations. This could be attributed to memory allocation constraints or the system's inability to handle large vector sizes.
 
 
 ## Program Output with Correctness Check (C and x86)
